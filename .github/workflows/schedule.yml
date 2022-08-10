@@ -4,10 +4,10 @@ on:
     branches:
       - master
   schedule:
-    - cron: '0 21 * * *'
+    - cron: '0 */6 * * *'
 jobs:
   signIn:
-    name: run app
+    name: run autoSignIn
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
