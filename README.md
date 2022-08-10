@@ -37,3 +37,6 @@ npm start
 
 ### 使用说明
 TODO:Finish Me
+
+### 自动打卡
+TODO:Finish Me
