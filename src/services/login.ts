@@ -11,24 +11,25 @@ import HeaderModel from '../model/header.model'
 import UserinfoModel from '../model/userinfo.model'
 
 let cookie: string
+const headers: HeaderModel = {
+  'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.114 Safari/537.36 Edg/103.0.1264.62',
+  'accept-language': 'zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6',
+  'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+}
 
 const getCredit = async (url: string): Promise<string> => {
   // 获取 token 并加入到请求头中 以 cookie 的形式携带
   cookie && info('获取token...')
   const { headers: header, data } = await axios.get(url)
   const token = header?.['set-cookie']?.[0]!
-  token && (cookie = token) // token 存在才赋值 避免二次请求（用户重新修改了账号密码）时 ISP 不会再次返回 token
-  checker(cookie, '获取成功', '无法获取token')
 
-  const headers: HeaderModel = {
-    'user-agent':
-      'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.114 Safari/537.36 Edg/103.0.1264.62',
-    'accept-language': 'zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6',
-    accept:
-      'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-    cookie: cookie!
+  // 二次请求（用户重新修改了账号密码）时 ISP 不会再次返回 token 避免重新赋值和重复设置请求头
+  if (token) {
+    cookie = token
+    headers.cookie = cookie
+    setHeaders(headers)
   }
-  token && setHeaders(headers) // 原因同上 避免重复设置请求头
+  checker(cookie, '获取成功', '无法获取token')
 
   // 获取页面上的验证码
   info('获取验证码...')
