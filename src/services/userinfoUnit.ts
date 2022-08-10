@@ -1,8 +1,5 @@
+import * as dotenv from 'dotenv'
 import CryptoJS from 'crypto-js'
-const {
-  enc: { Utf8 },
-  Rabbit: { encrypt, decrypt }
-} = CryptoJS
 
 import input from '../utils/input'
 import reader from '../utils/reader'
@@ -16,9 +13,23 @@ import QuestionModel from '../model/question.model'
 import LocationModel from '../model/location.model'
 import UserinfoModel from '../model/userinfo.model'
 
-// Secret Key
-const key = '&#!.))*:|l}o'
-let isFirstExec: boolean = false
+dotenv.config()
+
+const { enc: { Utf8 }, Rabbit: { encrypt, decrypt } } = CryptoJS
+const { ACCOUNT, PASSWORD, PROVINCE, CITY, AREA } = process.env
+const key = '&#!.))*:|l}o' // Secret Key
+let isFirstExec: boolean = false // 是否第一次运行
+
+// 是否使用 Github Action 打卡
+const isAutoSignIn: boolean = !!(ACCOUNT && PASSWORD)
+// 通过 Github Action 配置的参数
+const autoSignInUserinfo = {
+  username: ACCOUNT,
+  userpwd: PASSWORD,
+  province: PROVINCE,
+  city: CITY,
+  area: AREA
+} as UserinfoModel
 
 // 账号密码
 const acctPwdQuestion: Array<QuestionModel> = [
@@ -118,7 +129,12 @@ const needRewriteUserinfo = async (
 }
 
 // 验证帐号密码和地址信息 对一些情况做了处理
-const checkUserinfo = async (): Promise<[boolean, UserinfoModel]> => {
+const checkUserinfo = async (): Promise<[boolean, boolean, UserinfoModel]> => {
+  // 如果是在 Github Actions 中配置了，则无需验证本地文件，且默认每次提交是常规提交
+  if (isAutoSignIn) {
+    checker(isValidUserInfo(autoSignInUserinfo), '参数验证完成', '参数不完整！请检查你的 Github Settings/Secrets')
+    return [isAutoSignIn, true, autoSignInUserinfo]
+  }
   info('验证文件信息...')
   let userinfo: UserinfoModel | null = null
   try {
@@ -141,7 +157,7 @@ const checkUserinfo = async (): Promise<[boolean, UserinfoModel]> => {
     warn('检测到' + e)
     userinfo = await needRewriteUserinfo(userinfo!)
   }
-  return [isFirstExec, userinfo!]
+  return [isAutoSignIn, isFirstExec, userinfo!]
 }
 
 export { checkUserinfo, needRewriteUserinfo }

@@ -38,7 +38,12 @@ const getCredit = async (url: string): Promise<string> => {
   return code!
 }
 
-const registerToken = async (url: string, userinfo: UserinfoModel, code: string): Promise<void> => {
+const registerToken = async (
+  url: string,
+  userinfo: UserinfoModel,
+  code: string,
+  isAutoSignIn: boolean
+): Promise<void> => {
   // 使用帐号密码和验证码登陆
   info('登陆以注册token...')
   const { username, userpwd } = userinfo
@@ -62,14 +67,20 @@ const registerToken = async (url: string, userinfo: UserinfoModel, code: string)
     checker(page.includes('控制面板'), '注册成功', responsParser(page)!)
   } catch (e) {
     warn(e as string)
-    const newUserinfo = await needRewriteUserinfo(userinfo, false)
-    await login(url, newUserinfo)
+    // 如果是 Github Action 设置的账号密码有误，则直接抛出错误
+    // 否则说明是本地文件有误，询问是否更改文件
+    if (isAutoSignIn) {
+      throw new Error(e as string)
+    } else {
+      const newUserinfo = await needRewriteUserinfo(userinfo, false)
+      await login(url, newUserinfo, isAutoSignIn)
+    }
   }
 }
 
-const login = async (url: string, userinfo: UserinfoModel): Promise<void> => {
+const login = async (url: string, userinfo: UserinfoModel, isAutoSignIn: boolean): Promise<void> => {
   const code = await getCredit(url)
-  await registerToken(url, userinfo, code)
+  await registerToken(url, userinfo, code, isAutoSignIn)
 }
 
 export default login

@@ -10,12 +10,14 @@ import createServer from './services/createServer'
 
 !(async () => {
   try {
-    const [isFirstExec, userinfo] = await checkUserinfo()
-    await login(loginUrl, userinfo)
+    const [isAutoSignIn, isFirstExec, userinfo] = await checkUserinfo()
+    await login(loginUrl, userinfo, isAutoSignIn)
     const id = await getUserId(idUrl)
     await submitRequest(isFirstExec, userinfo, id, signInUrl, generalSignInUrl)
-    await getPageResult(pageUrl, id)
-    await createServer()
+    if (!isAutoSignIn) {
+      await getPageResult(pageUrl, id)
+      await createServer()
+    }
   } catch (e) {
     error('操作失败，错误信息：', e as string)
   }

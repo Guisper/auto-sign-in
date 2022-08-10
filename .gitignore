@@ -5,3 +5,5 @@ dist/
 *lock*
 userinfo.json
 index.html
+.env
+.env.test
