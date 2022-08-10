@@ -36,7 +36,11 @@ const signIn = async (url: string, params: Params): Promise<boolean> => {
 }
 
 // 带有地址的常规登记
-const signInWithLocation = async (url: string, location: LocationModel, params: Params): Promise<void> => {
+const signInWithLocation = async (
+  url: string,
+  location: LocationModel,
+  params: Params
+): Promise<void> => {
   info('你的地址信息如下：')
   console.log(location)
   info('常规登记中...')

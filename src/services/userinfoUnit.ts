@@ -95,7 +95,9 @@ const saveUserinfo = async ({ ...data }): Promise<void> => {
 }
 
 // 根据问题列表获取信息
-const questionQuery = async (questionList: Array<QuestionModel>): Promise<LocationModel | UserinfoModel> => {
+const questionQuery = async (
+  questionList: Array<QuestionModel>
+): Promise<LocationModel | UserinfoModel> => {
   const res = await input(questionList)
   return res
 }
