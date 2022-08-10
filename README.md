@@ -39,4 +39,7 @@ npm start
 TODO:Finish Me
 
 ### 自动打卡
+
+> 配置Github Action参数
+
 TODO:Finish Me
