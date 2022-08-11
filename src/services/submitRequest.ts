@@ -2,7 +2,7 @@ import axios from 'axios'
 import { stringify } from 'qs'
 
 import getFormattedString from '../utils/date'
-import { success, info, warn, error } from '../utils/output'
+import { success, info, warn } from '../utils/output'
 import { responsParser } from '../utils/parser'
 import checker from '../utils/checker'
 

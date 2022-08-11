@@ -2,7 +2,7 @@ import express from 'express'
 import qrcode from 'qrcode-terminal'
 
 import { staticPath, staticPagePath } from '../utils/path'
-import reader from '../utils/reader'
+import { reader } from '../utils/io'
 import getValidIPAddress from '../utils/networkAddress'
 import { success, info } from '../utils/output'
 
