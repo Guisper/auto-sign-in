@@ -61,19 +61,57 @@ npm run build-app
   - 如果需要更改地址重新删除文件 `static/userinfo.json` 再运行即可
 - 运行成功后的打卡结果会以页面形式呈现
 
-
 > 打包到其他平台
 
 如果需要打包到其他平台，请更改 `package.json` 的 `pkg.targets` ，具体规则参照[pkg - npm](https://www.npmjs.com/package/pkg)
 
 
-### 自动打卡
+### 项目结构
+
+```
+auto-sign-in 根目录
+├── LICENSE 开源协议
+├── README.md 自述文件
+├── build 运行 npm run build 生成的打包文件目录
+├── dist  运行 npm run build-app 生成的应用目录
+├── package.json 项目依赖和一些配置项
+├── src 项目根目录
+│   ├── index.ts 入口文件，从此这里运行
+│   ├── model 各种模型（TypeScript 接口）
+│   │   ├── IPAddress.model.ts IP地址模型
+│   │   ├── header.model.ts    请求头模型
+│   │   ├── location.model.ts  地址模型
+│   │   ├── question.model.ts  inquirer的问题模型
+│   │   └── userinfo.model.ts  用户信息模型
+│   ├── services 完成打卡操作的必须流程
+│   │   ├── createServer.ts    开启本地服务器展示页面
+│   │   ├── getPageResult.ts   获取页面结果
+│   │   ├── getUserId.ts       获取用户id
+│   │   ├── login.ts           登录并注册token
+│   │   ├── submitRequest.ts   提交打卡申请
+│   │   └── userinfoUnit.ts    用户信息的各类（读写/验证等）操作
+│   └── utils 工具类
+│       ├── checker.ts        条件检查
+│       ├── date.ts           日期操作
+│       ├── input.ts          从控制台读取输入
+│       ├── io.ts             文件读写
+│       ├── networkAddress.ts 获取IP地址和端口
+│       ├── output.ts         输出内容到控制台
+│       ├── page.ts           页面资源处理
+│       ├── parser.ts         各类解析器
+│       ├── path.ts           本地静态资源路径
+│       ├── setHeaders.ts     通过拦截器设置请求头
+│       ├── url.ts            各类请求地址
+│       └── validator.ts      参数验证
+└── tsconfig.json  代码的编译选项
+
+```
+
+## 自动打卡
 
 自动打卡通过 `Github Actions`完成，下面的操作需要到 `Github` 上进行，如果需要自动打卡，请移步到 `Github` 仓库：[Guisper/auto-sign-in](https://github.com/Guisper/auto-sign-in)
 
 > Fork 本仓库
-
-
 
 > 在 Settings 中配置 Actions
 
