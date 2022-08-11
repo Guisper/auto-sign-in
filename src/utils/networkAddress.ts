@@ -6,11 +6,12 @@ import { info } from './output'
 import IPAddressModel from '../model/IPAddress.model'
 
 // 获取本机 IPv4 地址
+// mac 地址 以 00:50:56 开头的是 VMWare 厂商，跳过
 const getIPv4Address = (): string | undefined => {
   const interfaceInfo = os.networkInterfaces()
   for (const key in interfaceInfo) {
-    for (const { family, address, internal } of interfaceInfo[key]!) {
-      if (family === 'IPv4' && address !== '127.0.0.1' && !internal) {
+    for (const { family, address, internal, mac } of interfaceInfo[key]!) {
+      if (family === 'IPv4' && address !== '127.0.0.1' && !internal && !mac.startsWith('00:50:56')) {
         return address
       }
     }
