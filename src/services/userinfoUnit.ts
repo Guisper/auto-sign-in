@@ -57,7 +57,7 @@ const locationQuestion: Array<QuestionModel> = [
   {
     name: 'province',
     type: 'input',
-    message: '请输入你所在的省',
+    message: '请输入你所在的省：',
     validate(val: string) {
       return isValidInput(val) || '还没输入呢'
     }
@@ -65,7 +65,7 @@ const locationQuestion: Array<QuestionModel> = [
   {
     name: 'city',
     type: 'input',
-    message: '请输入你所在的市',
+    message: '请输入你所在的市：',
     mask: true,
     validate(val: string) {
       return isValidInput(val) || '还没输入呢'
@@ -74,7 +74,7 @@ const locationQuestion: Array<QuestionModel> = [
   {
     name: 'area',
     type: 'input',
-    message: '请输入你所在的区/县',
+    message: '请输入你所在的区/县：',
     mask: true,
     validate(val: string) {
       return isValidInput(val) || '还没输入呢'
@@ -98,7 +98,7 @@ const alternativeInquirer = (message: string): Array<QuestionModel> => [
 
 // 保存加密后的用户信息到文件
 const saveUserinfo = async ({ ...data }): Promise<void> => {
-  info('即将在同级目录创建文件保存信息...')
+  info('即将在 static/userinfo.json 创建文件保存信息...')
   for (const [k, v] of Object.entries(data)) {
     data[k] = encrypt(v.toString(), key).toString()
   }

@@ -83,8 +83,7 @@ const submitRequest = async (
   // 两种登记方式都需要携带的 params 参数
   const params: Params = { id, id2: today }
   info(`尝试提交${today}的打卡申请...`)
-  ;(!isFirstExec && (await signIn(signInUrl, params))) ||
-    (await signInWithLocation(generalSignInUrl, location, params))
+  !isFirstExec && (await signIn(signInUrl, params)) || await signInWithLocation(generalSignInUrl, location, params)
 }
 
 export default submitRequest
