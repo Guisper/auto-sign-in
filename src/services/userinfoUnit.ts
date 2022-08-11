@@ -132,8 +132,8 @@ const needRewriteUserinfo = async (
 const checkUserinfo = async (): Promise<[boolean, boolean, UserinfoModel]> => {
   // 如果是在 Github Actions 中配置了，则无需验证本地文件，且默认每次提交是常规提交
   if (isAutoSignIn) {
-    checker(isValidUserInfo(autoSignInUserinfo), '参数验证完成', '参数不完整！请检查你的 Github Settings/Secrets')
-    return [isAutoSignIn, true, autoSignInUserinfo]
+    checker(isValidUserInfo(autoSignInUserinfo), '参数验证完成', '参数不完整！请检查你的 Secrets')
+    return [true, true, autoSignInUserinfo]
   }
   info('验证文件信息...')
   let userinfo: UserinfoModel | null = null
@@ -157,7 +157,7 @@ const checkUserinfo = async (): Promise<[boolean, boolean, UserinfoModel]> => {
     warn('检测到' + e)
     userinfo = await needRewriteUserinfo(userinfo!)
   }
-  return [isAutoSignIn, isFirstExec, userinfo!]
+  return [false, isFirstExec, userinfo!]
 }
 
 export { checkUserinfo, needRewriteUserinfo }

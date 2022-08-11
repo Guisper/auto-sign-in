@@ -19,10 +19,10 @@ const today = getFormattedString()
 
 // 提交请求的响应结果
 const responsMap = new Map([
-  ['提交成功', true],
-  [today + '登记已存在', true],
-  ['登记失败', false],
-  ['登记失败！需开启定位功能', false]
+  ['提交成功', 0],
+  [today + '登记已存在', 1],
+  ['登记失败', 2],
+  ['登记失败！需开启定位功能', 3]
 ])
 
 // 不带地址的一键登记
@@ -32,8 +32,9 @@ const signIn = async (url: string, params: Params): Promise<boolean> => {
   // 解析页面返回结果
   const msg = responsParser(data)
   const res = responsMap.get(msg!)!
-  res ? success(msg!) : warn('无法完成一键登记，尝试常规登记...')
-  return res!
+  const isOK = res === 0 || res === 1
+  isOK ? success(msg!) : warn(msg + '无法完成一键登记，尝试常规登记...')
+  return isOK
 }
 
 // 带有地址的常规登记
@@ -68,7 +69,7 @@ const signInWithLocation = async (
   // 解析页面返回结果
   const msg = responsParser(data)
   const res = responsMap.get(msg!)!
-  checker(res, msg, new Error('常规登记出错'))
+  checker(res === 0 || res === 1, msg, new Error('常规登记出错'))
 }
 
 const submitRequest = async (
