@@ -68,13 +68,12 @@ const registerToken = async (
   } catch (e) {
     warn(e as string)
     // 如果是 Github Action 设置的账号密码有误，则直接抛出错误
-    // 否则说明是本地文件有误，询问是否更改文件
     if (isAutoSignIn) {
       throw new Error(e as string)
-    } else {
-      const newUserinfo = await needRewriteUserinfo(userinfo, false)
-      await login(url, newUserinfo, isAutoSignIn)
     }
+    // 否则说明是本地文件有误，询问是否更改文件
+    const newUserinfo = await needRewriteUserinfo(userinfo, false)
+    await login(url, newUserinfo, isAutoSignIn)
   }
 }
 

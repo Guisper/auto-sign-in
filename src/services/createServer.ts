@@ -6,6 +6,9 @@ import reader from '../utils/reader'
 import getValidIPAddress from '../utils/networkAddress'
 import { success, info } from '../utils/output'
 
+const invalidPageMsg = `<h3>你跑错地方了，这是本地服务器！<a href="/">点我回去</a></h3>`
+const fileNotExistsMsg = '服务器内部出错了！无法读取文件，路径：' + staticPagePath
+
 const createServer = async (): Promise<void> => {
   // 读取本地文件：打卡的页面结果
   const [pageNotExists, page] = await reader(staticPagePath, false)
@@ -18,8 +21,11 @@ const createServer = async (): Promise<void> => {
     .use('/static', express.static(staticPath))
     .get('/', (_, res) => {
       pageNotExists
-        ? res.status(500).send('Server Internal Error: Can Not Read File, Path: ' + staticPagePath)
+        ? res.status(500).setHeader('Content-Type', 'text/plain;charset=utf-8').send(fileNotExistsMsg)
         : res.status(200).setHeader('Content-Type', 'text/html').send(page)
+    })
+    .use((_, res) => {
+      res.status(404).setHeader('Content-Type', 'text/html;charset=utf-8').send(invalidPageMsg)
     })
     .listen(port, () => {
       // 监听端口 生成二维码
