@@ -4,7 +4,7 @@ import { minify } from 'html-minifier'
 import writer from '../utils/writer'
 import { info, success } from '../utils/output'
 import { staticPagePath } from '../utils/path'
-import pageProcessor from '../utils/pageProcessor'
+import pageProcessor from '../utils/page'
 
 const minifyOptions = {
   minifyJS: true,

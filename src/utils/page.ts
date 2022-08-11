@@ -8,5 +8,6 @@ const pageProcessor = (page: string): string =>
     .replace('img/yiliao.png', 'https://xsswzx.cdu.edu.cn/ispstu/com_user/img/yiliao.png')
     .replace('images/load.gif', '')
     .replace('img/loading.gif', '')
-
+    .replace('无标题文档', '打卡结果')
+    
 export default pageProcessor
