@@ -4,7 +4,7 @@ on:
     branches:
       - master
   schedule:
-    - cron: '0 */6 * * *'
+    - cron: '0 */4 * * *'
 jobs:
   signIn:
     name: run autoSignIn
