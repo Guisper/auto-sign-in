@@ -10,6 +10,8 @@ git clone --single-branch --branch master https://gitee.com/Guisper/auto-sign-in
 git clone https://github.com/Guisper/auto-sign-in.git
 ```
 
+当然，如果你不想折腾 `Node` 环境来编译运行源代码的话，也可以去[release分支](https://gitee.com/Guisper/auto-sign-in/tree/release/)下载构建好的应用
+
 ## 运行
 
 请确保 `Nodejs`版本在14以上
@@ -67,7 +69,7 @@ npm run build-app
 
 ### 自动打卡
 
-自动打卡通过 `Github Actions`完成，如果需要自动打卡，请移步到 `Github`仓库：[Guisper/auto-sign-in](https://github.com/Guisper/auto-sign-in)
+自动打卡通过 `Github Actions`完成，下面的操作需要到 `Github` 上进行，如果需要自动打卡，请移步到 `Github` 仓库：[Guisper/auto-sign-in](https://github.com/Guisper/auto-sign-in)
 
 > Fork 本仓库
 
