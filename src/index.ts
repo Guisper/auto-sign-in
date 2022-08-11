@@ -18,7 +18,9 @@ import createServer from './services/createServer'
       await getPageResult(pageUrl, id)
       await createServer()
     }
+    process.exit(0)
   } catch (e) {
     error('操作失败，错误信息：', e as string)
+    process.exit(1)
   }
 })()
