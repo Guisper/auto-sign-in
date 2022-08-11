@@ -19,7 +19,7 @@ const headers: HeaderModel = {
 
 const getCredit = async (url: string): Promise<string> => {
   // 获取 token 并加入到请求头中 以 cookie 的形式携带
-  cookie && info('获取token...')
+  !cookie && info('获取token...')
   const { headers: header, data } = await axios.get(url)
   const token = header?.['set-cookie']?.[0]!
 
@@ -79,6 +79,7 @@ const registerToken = async (
 }
 
 const login = async (url: string, userinfo: UserinfoModel, isAutoSignIn: boolean): Promise<void> => {
+  info('正在尝试 ' + userinfo.username)
   const code = await getCredit(url)
   await registerToken(url, userinfo, code, isAutoSignIn)
 }

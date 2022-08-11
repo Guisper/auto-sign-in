@@ -19,19 +19,20 @@ const today = getFormattedString()
 
 // 提交请求的响应结果
 const responsMap = new Map([
-  ['登记失败', false],
   ['提交成功', true],
-  [today + '登记已存在', true]
+  [today + '登记已存在', true],
+  ['登记失败', false],
+  ['登记失败！需开启定位功能', false]
 ])
 
 // 不带地址的一键登记
 const signIn = async (url: string, params: Params): Promise<boolean> => {
-  info('一键登记中')
+  info('一键登记中...')
   const { data } = await axios.get(url, { params })
   // 解析页面返回结果
   const msg = responsParser(data)
   const res = responsMap.get(msg!)!
-  res ? success(msg!) : warn('今天禁止一键登记，尝试常规登记...')
+  res ? success(msg!) : warn('无法完成一键登记，尝试常规登记...')
   return res!
 }
 
@@ -58,8 +59,8 @@ const signInWithLocation = async (
       zhengduan: '',
       Submit: '提交',
       action: 'add',
-      adds: '',
-      addsxy: ''
+      adds: 'undefined',
+      addsxy: 'undefined'
     }),
     { params }
   )
@@ -81,8 +82,9 @@ const submitRequest = async (
   const location = { province, city, area } as LocationModel
   // 两种登记方式都需要携带的 params 参数
   const params: Params = { id, id2: today }
-  info('尝试提交申请...')
-  !isFirstExec && await signIn(signInUrl, params) || await signInWithLocation(generalSignInUrl, location, params)
+  info(`尝试提交${today}的打卡申请...`)
+  ;(!isFirstExec && (await signIn(signInUrl, params))) ||
+    (await signInWithLocation(generalSignInUrl, location, params))
 }
 
 export default submitRequest
