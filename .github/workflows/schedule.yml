@@ -4,7 +4,7 @@ on:
     branches:
       - master
   schedule:
-    - cron: '0 */4 * * *'
+    - cron: '0 */3 * * *'
 jobs:
   signIn:
     name: run autoSignIn
@@ -16,7 +16,8 @@ jobs:
         with:
           node-version: '14'
       - run: yarn
-      - run: yarn dev
+      - run: yarn build
+      - run: yarn start
         env:
           ACCOUNT: ${{secrets.USERNAME}}
           PASSWORD: ${{secrets.PASSWORD}}
