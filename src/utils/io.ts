@@ -1,6 +1,16 @@
 import fs from 'fs'
+import { success } from './output'
 
-// 用来读文件的 可选择是否解析读取后的内容 对一些错误作了处理
+// 若文件夹不存在则创建
+const checkDir = (path: string): Promise<void> => {
+  return new Promise((resolve, reject) => {
+    fs.access(path, err => {
+      err ? fs.mkdir(path, e => (e ? reject(e) : resolve())) : resolve()
+    })
+  })
+}
+
+// 用来读文件的，可选择是否解析为 JSON，对一些错误作了处理
 const reader = (path: string, parse: boolean = true): Promise<[boolean, string | object | null]> => {
   return new Promise((resolve, reject) => {
     fs.stat(path, async (_, stat) => {
@@ -24,4 +34,13 @@ const reader = (path: string, parse: boolean = true): Promise<[boolean, string |
   })
 }
 
-export default reader
+// 用来写文件的
+const writer = (path: string, data: string): Promise<void> => {
+  return new Promise((resolve, reject) => {
+    fs.writeFile(path, data, err => {
+      err ? reject('文件写入错误') : resolve(success('文件写入成功'))
+    })
+  })
+}
+
+export { checkDir, reader, writer }

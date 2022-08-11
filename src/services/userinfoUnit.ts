@@ -2,11 +2,10 @@ import * as dotenv from 'dotenv'
 import CryptoJS from 'crypto-js'
 
 import input from '../utils/input'
-import reader from '../utils/reader'
-import writer from '../utils/writer'
+import { reader, writer, checkDir } from '../utils/io'
 import checker from '../utils/checker'
 import { info, warn } from '../utils/output'
-import { userinfoPath } from '../utils/path'
+import { staticPagePath, userinfoPath } from '../utils/path'
 import { isValidInput, isValidUsername, isValidPassword, isValidUserInfo } from '../utils/validator'
 
 import QuestionModel from '../model/question.model'
@@ -102,6 +101,7 @@ const saveUserinfo = async ({ ...data }): Promise<void> => {
   for (const [k, v] of Object.entries(data)) {
     data[k] = encrypt(v.toString(), key).toString()
   }
+  await checkDir(staticPagePath)
   await writer(userinfoPath, JSON.stringify(data))
 }
 

@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { minify } from 'html-minifier'
 
-import writer from '../utils/writer'
+import { writer } from '../utils/io'
 import { info, success } from '../utils/output'
 import { staticPagePath } from '../utils/path'
 import pageProcessor from '../utils/page'
