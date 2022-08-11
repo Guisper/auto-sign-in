@@ -5,7 +5,7 @@ import input from '../utils/input'
 import { reader, writer, checkDir } from '../utils/io'
 import checker from '../utils/checker'
 import { info, warn } from '../utils/output'
-import { staticPagePath, userinfoPath } from '../utils/path'
+import { staticPath, userinfoPath } from '../utils/path'
 import { isValidInput, isValidUsername, isValidPassword, isValidUserInfo } from '../utils/validator'
 
 import QuestionModel from '../model/question.model'
@@ -101,7 +101,7 @@ const saveUserinfo = async ({ ...data }): Promise<void> => {
   for (const [k, v] of Object.entries(data)) {
     data[k] = encrypt(v.toString(), key).toString()
   }
-  await checkDir(staticPagePath)
+  await checkDir(staticPath)
   await writer(userinfoPath, JSON.stringify(data))
 }
 
