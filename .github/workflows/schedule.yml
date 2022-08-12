@@ -24,16 +24,16 @@ jobs:
           CITY: ${{secrets.CITY}}
           AREA: ${{secrets.AREA}}
       - name: 'Get Date'
-        run: echo "REPORT_DATE=$(TZ=':Asia/Shanghai' date '+%Y-%m-%d %T')" >> $GITHUB_ENV
+        run: echo "$(TZ=':Asia/Shanghai' date '+%Y年%m月%d日')" >> $GITHUB_ENV
       - name: 'Send Email'
         uses: dawidd6/action-send-mail@master
         with:
-          serveraddress: smtp.163.com
+          serveraddress: smtp.qq.com
           serverport: 465
           username: ${{ secrets.MAILUSERNAME }}
           password: ${{ secrets.MAILPASSWORD }}
           subject: ${{ env.GITHUB_ENV }}的ISP打卡结果
           body: file://./static/index.html
           to: ${{ secrets.MAILUSERNAME }}
-          from: ${{ secrets.MAILUSERNAME }}
+          from: Github Actions Job Result <${{ secrets.MAILUSERNAME }}>
           content_type: text/html
