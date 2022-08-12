@@ -65,19 +65,18 @@ npm run build-app
 
 如果需要打包到其他平台，请更改 `package.json` 的 `pkg.targets` ，具体规则参照[pkg - npm](https://www.npmjs.com/package/pkg)
 
-
 ### 项目结构
 
 ```
-auto-sign-in 根目录
-├── LICENSE 开源协议
+auto-sign-in  根目录
+├── LICENSE   开源协议
 ├── README.md 自述文件
 ├── build 运行 npm run build 生成的打包文件目录
 ├── dist  运行 npm run build-app 生成的应用目录
 ├── package.json 项目依赖和一些配置项
 ├── src 项目根目录
-│   ├── index.ts 入口文件，从此这里运行
-│   ├── model 各种模型（TypeScript 接口）
+│   ├── index.ts               入口文件，从此这里运行
+│   ├── model                  各种模型（TypeScript 接口）
 │   │   ├── IPAddress.model.ts IP地址模型
 │   │   ├── header.model.ts    请求头模型
 │   │   ├── location.model.ts  地址模型
@@ -91,18 +90,18 @@ auto-sign-in 根目录
 │   │   ├── submitRequest.ts   提交打卡申请
 │   │   └── userinfoUnit.ts    用户信息的各类（读写/验证等）操作
 │   └── utils 工具类
-│       ├── checker.ts        条件检查
-│       ├── date.ts           日期操作
-│       ├── input.ts          从控制台读取输入
-│       ├── io.ts             文件读写
-│       ├── networkAddress.ts 获取IP地址和端口
-│       ├── output.ts         输出内容到控制台
-│       ├── page.ts           页面资源处理
-│       ├── parser.ts         各类解析器
-│       ├── path.ts           本地静态资源路径
-│       ├── setHeaders.ts     通过拦截器设置请求头
-│       ├── url.ts            各类请求地址
-│       └── validator.ts      参数验证
+│       ├── checker.ts         条件检查
+│       ├── date.ts            日期操作
+│       ├── input.ts           从控制台读取输入
+│       ├── io.ts              文件读写
+│       ├── networkAddress.ts  获取IP地址和端口
+│       ├── output.ts          输出内容到控制台
+│       ├── page.ts            页面资源处理
+│       ├── parser.ts          各类解析器
+│       ├── path.ts            本地静态资源路径
+│       ├── setHeaders.ts      通过拦截器设置请求头
+│       ├── url.ts             各类请求地址
+│       └── validator.ts       参数验证
 └── tsconfig.json  代码的编译选项
 
 ```
@@ -113,18 +112,27 @@ auto-sign-in 根目录
 
 > Fork 本仓库
 
+- 点击 `Fork`
+- 在打开的页面点 `Create fork`
+
+![fork仓库](./image/README/1660272853660.png)
+
 > 在 Settings 中配置 Actions
 
 - 点击 `Settings` —— `Actions` —— `General`
 - 设置 `Actions permissions` 为 `Allow all actions and reusable workflows`
 - 点击 `Save` 按钮保存
 
+![设置Actions](./image/README/1660272992317.png)
+
 > 在 Settings 中配置 Secrets
 
-- 点击 `Settings` —— `Secrets` —— `General`
-- 点击 `New repository secret` 添加 `Secrets`，字段需要包括：
+- 点击 `Secrets` —— `Actions`
+- 点击 `New repository secret` 添加你的 `Repository secrets`，其中 `Name` 是字段， `Value` 是值，需要包括：
   - `USERNAME`：你的学号
   - `PASSWORD`：你的ISP密码
   - `PROVINCE`：所在的省
   - `CITY`：所在的市
   - `AREA`：所在的区/县
+
+![创建Secrets](./image/README/1660273025502.png)
