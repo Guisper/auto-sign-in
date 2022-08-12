@@ -11,15 +11,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: use Nodejs 14.x
+      - name: Use Node.js 14.x
         uses: actions/setup-node@v1
         with:
           node-version: '14'
-      - name: install environment
       - run: yarn
-      - name: build source code
       - run: yarn build
-      - name: start autoSignIn
       - run: yarn start
         env:
           ACCOUNT: ${{secrets.USERNAME}}
