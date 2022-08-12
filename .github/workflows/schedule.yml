@@ -19,10 +19,10 @@ jobs:
           server_port: 465
           username: ${{ secrets.MAILUSERNAME }}
           password: ${{ secrets.MAILPASSWORD }}
-          subject: Github Actions Job Result——${{ env.REPORT_DATE }}——ISP打卡结果
+          subject: ISP Auto Sign In Result ${{ env.REPORT_DATE }}
           html_body: <h2 style="color:lightskyblue">this is html_body,the result will be displayed here</h2>
           to: ${{ secrets.MAILUSERNAME }}
-          from: ${{ secrets.MAILUSERNAME }}
+          from: Github Actions Job Result
       - name: Use Node.js 14.x
         uses: actions/setup-node@v1
         with:
