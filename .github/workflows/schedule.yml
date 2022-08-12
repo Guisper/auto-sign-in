@@ -15,10 +15,9 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '14'
-      - name: Install & Build & Start
-        run: yarn
-        run: yarn build
-        run: yarn start
+        - run: yarn
+        - run: yarn build
+        - run: yarn start
         env:
           ACCOUNT: ${{secrets.USERNAME}}
           PASSWORD: ${{secrets.PASSWORD}}
