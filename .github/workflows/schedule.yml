@@ -10,12 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Use Node.js 14.x
-        uses: actions/setup-node@v1
-        with:
-          node-version: '14'
       - name: 'Get Date'
-        run: echo "$(TZ=':Asia/Shanghai' date '+%Y年%m月%d日')" >> $GITHUB_ENV
+        run: echo "$(TZ=':Asia/Shanghai' date '+%Y-%m-%d')" >> $GITHUB_ENV
       - name: 'Send Email'
         uses: dawidd6/action-send-mail@master
         with:
@@ -27,6 +23,10 @@ jobs:
           body: <h2 style="color:lightskyblue">hello world</h2>
           to: ${{ secrets.MAILUSERNAME }}
           from: Github Actions Job Result <${{ secrets.MAILUSERNAME }}>
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14'
       - run: yarn
       - run: yarn build
       - run: yarn start
