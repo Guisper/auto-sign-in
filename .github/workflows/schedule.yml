@@ -10,19 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: 'Get Date'
-        run: echo "REPORT_DATE=$(TZ=':Asia/Shanghai' date '+%Y-%m-%d')" >> $GITHUB_ENV
-      - name: 'Send Email'
-        uses: dawidd6/action-send-mail@master
-        with:
-          server_address: smtp.qq.com
-          server_port: 465
-          username: ${{ secrets.MAILUSERNAME }}
-          password: ${{ secrets.MAILPASSWORD }}
-          subject: ISP Auto Sign In Result ${{ env.REPORT_DATE }}
-          html_body: <h2 style="color:lightskyblue">this is html_body,the result will be displayed here</h2>
-          to: ${{ secrets.MAILUSERNAME }}
-          from: Github Actions Job Result
       - name: Use Node.js 14.x
         uses: actions/setup-node@v1
         with:
@@ -36,3 +23,16 @@ jobs:
           PROVINCE: ${{secrets.PROVINCE}}
           CITY: ${{secrets.CITY}}
           AREA: ${{secrets.AREA}}
+      - name: 'Get Date'
+        run: echo "REPORT_DATE=$(TZ=':Asia/Shanghai' date '+%Y-%m-%d')" >> $GITHUB_ENV
+      - name: 'Send Email'
+        uses: dawidd6/action-send-mail@master
+        with:
+          server_address: smtp.qq.com
+          server_port: 465
+          username: ${{ secrets.MAILUSERNAME }}
+          password: ${{ secrets.MAILPASSWORD }}
+          subject: Github Actions—ISP Auto-Sign-In Result Of ${{ env.REPORT_DATE }}
+          html_body: file://static/index.html
+          to: ${{ secrets.MAILUSERNAME }}
+          from: ${{ secrets.MAILUSERNAME }}
