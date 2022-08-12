@@ -14,8 +14,8 @@ import createServer from './services/createServer'
     await login(loginUrl, userinfo, isAutoSignIn)
     const id = await getUserId(idUrl)
     await submitRequest(isFirstExec, userinfo, id, signInUrl, generalSignInUrl)
+    await getPageResult(pageUrl, id)
     if (!isAutoSignIn) {
-      await getPageResult(pageUrl, id)
       await createServer()
     }
     process.exit(0)
