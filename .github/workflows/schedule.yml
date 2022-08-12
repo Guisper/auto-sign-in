@@ -37,7 +37,7 @@ jobs:
           serverport: 465
           username: ${{ secrets.MAILUSERNAME }}
           password: ${{ secrets.MAILPASSWORD }}
-          subject: ISP打卡结果
+          subject: ${{ env.GITHUB_ENV }}的ISP打卡结果
           body: file://./static/index.html
           to: ${{ secrets.MAILUSERNAME }}
           from: ${{ secrets.MAILUSERNAME }}
