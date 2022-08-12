@@ -24,7 +24,7 @@ jobs:
           CITY: ${{secrets.CITY}}
           AREA: ${{secrets.AREA}}
       - name: 'Get Date'
-      - run: echo "REPORT_DATE=$(TZ=':Asia/Shanghai' date '+%Y-%m-%d %T')" >> $GITHUB_ENV
+        run: echo "REPORT_DATE=$(TZ=':Asia/Shanghai' date '+%Y-%m-%d %T')" >> $GITHUB_ENV
       - name: 'Send Email'
         uses: dawidd6/action-send-mail@master
         with:
