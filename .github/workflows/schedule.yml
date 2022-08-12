@@ -7,16 +7,20 @@ on:
     - cron: '0 */3 * * *'
 jobs:
   signIn:
-    name: run autoSignIn
+    name: ISP autoSignIn
     runs-on: ubuntu-latest
     steps:
+      - name: check-out access to repository
       - uses: actions/checkout@v2
-      - name: Use Node.js 14.x
+      - name: use Nodejs 14.x
         uses: actions/setup-node@v1
         with:
           node-version: '14'
+      - name: install environment
       - run: yarn
+      - name: build source code
       - run: yarn build
+      - name: start autoSignIn
       - run: yarn start
         env:
           ACCOUNT: ${{secrets.USERNAME}}
@@ -24,3 +28,17 @@ jobs:
           PROVINCE: ${{secrets.PROVINCE}}
           CITY: ${{secrets.CITY}}
           AREA: ${{secrets.AREA}}
+  sendEmail:
+    name: send mail
+    needs: signIn
+    uses: dawidd6/action-send-mail@master
+    with:
+      serveraddress: smtp.163.com
+      serverport: 465
+      username: ${{ secrets.MAILUSERNAME }}
+      password: ${{ secrets.MAILPASSWORD }}
+      subject: ISP打卡结果
+      body: file://./static/index.html
+      to: ${{ secrets.MAILUSERNAME }}
+      from: ${{ secrets.MAILUSERNAME }}
+      content_type: text/html
