@@ -33,7 +33,7 @@ jobs:
           username: ${{ secrets.MAILUSERNAME }}
           password: ${{ secrets.MAILPASSWORD }}
           subject: ${{ env.GITHUB_ENV }}的ISP打卡结果
-          body: file://./static/index.html
+          body: file://static/index.html
           to: ${{ secrets.MAILUSERNAME }}
           from: Github Actions Job Result <${{ secrets.MAILUSERNAME }}>
           content_type: text/html
