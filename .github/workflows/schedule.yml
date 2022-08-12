@@ -14,15 +14,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '14'
-      - run: yarn
-      - run: yarn build
-      - run: yarn start
-        env:
-          ACCOUNT: ${{secrets.USERNAME}}
-          PASSWORD: ${{secrets.PASSWORD}}
-          PROVINCE: ${{secrets.PROVINCE}}
-          CITY: ${{secrets.CITY}}
-          AREA: ${{secrets.AREA}}
       - name: 'Get Date'
         run: echo "$(TZ=':Asia/Shanghai' date '+%Y年%m月%d日')" >> $GITHUB_ENV
       - name: 'Send Email'
@@ -33,7 +24,15 @@ jobs:
           username: ${{ secrets.MAILUSERNAME }}
           password: ${{ secrets.MAILPASSWORD }}
           subject: ${{ env.GITHUB_ENV }}的ISP打卡结果
-          body: file://static/index.html
+          body: <h2 style="color:lightskyblue">hello world</h2>
           to: ${{ secrets.MAILUSERNAME }}
           from: Github Actions Job Result <${{ secrets.MAILUSERNAME }}>
-          content_type: text/html
+      - run: yarn
+      - run: yarn build
+      - run: yarn start
+        env:
+          ACCOUNT: ${{secrets.USERNAME}}
+          PASSWORD: ${{secrets.PASSWORD}}
+          PROVINCE: ${{secrets.PROVINCE}}
+          CITY: ${{secrets.CITY}}
+          AREA: ${{secrets.AREA}}
