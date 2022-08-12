@@ -18,7 +18,6 @@ import createServer from './services/createServer'
     if (!isAutoSignIn) {
       await createServer()
     }
-    process.exit(0)
   } catch (e) {
     error('操作失败，错误信息：', e as string)
     process.exit(1)
