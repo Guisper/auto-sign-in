@@ -11,7 +11,7 @@
 - 点击 `Fork`
 - 在打开的页面点 `Create fork`
 
-![fork仓库](https://gitee.com/Guisper/image/raw/master/image/github/auto-sign-in/1660272853660.png)
+![fork仓库](http://guisper.gitee.io/image/image/github/auto-sign-in/1660272853660.png)
 
 > 在 Settings 中配置 Actions
 
@@ -19,7 +19,7 @@
 - 设置 `Actions permissions` 为 `Allow all actions and reusable workflows`
 - 点击 `Save` 按钮保存
 
-![设置Actions](https://gitee.com/Guisper/image/raw/master/image/github/auto-sign-in/1660272992317.png)
+![设置Actions](http://guisper.gitee.io/image/image/github/auto-sign-in/1660272992317.png)
 
 > 在 Settings 中配置 Secrets
 
@@ -31,7 +31,7 @@
   - `CITY`：所在的市
   - `AREA`：所在的区/县
 
-![创建Secrets](https://gitee.com/Guisper/image/raw/master/image/github/auto-sign-in/1660273025502.png)
+![创建Secrets](http://guisper.gitee.io/image/image/github/auto-sign-in/1660273025502.png)
 
 ### 发送邮箱
 
