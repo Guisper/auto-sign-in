@@ -15,12 +15,13 @@ jobs:
       - name: 'Send Email'
         uses: dawidd6/action-send-mail@master
         with:
-          serveraddress: smtp.qq.com
-          serverport: 465
+          server_address: smtp.qq.com
+          server_port: 465
           username: ${{ secrets.MAILUSERNAME }}
           password: ${{ secrets.MAILPASSWORD }}
           subject: ${{ env.GITHUB_ENV }}的ISP打卡结果
-          body: <h2 style="color:lightskyblue">hello world</h2>
+          body: <h2 style="color:lightskyblue">this is body</h2>
+          html_body: <h2 style="color:lightskyblue">this is html_body</h2>
           to: ${{ secrets.MAILUSERNAME }}
           from: Github Actions Job Result <${{ secrets.MAILUSERNAME }}>
       - name: Use Node.js 14.x
