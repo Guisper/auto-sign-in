@@ -10,7 +10,6 @@ jobs:
     name: ISP autoSignIn
     runs-on: ubuntu-latest
     steps:
-      - name: check-out access to repository
       - uses: actions/checkout@v2
       - name: use Nodejs 14.x
         uses: actions/setup-node@v1
