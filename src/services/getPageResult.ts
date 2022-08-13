@@ -8,6 +8,7 @@ import pageProcessor from '../utils/page'
 
 const minifyOptions = {
   minifyJS: true,
+  minifyCSS: true,
   removeComments: true,
   collapseWhitespace: true,
   removeScriptTypeAttributes: true
