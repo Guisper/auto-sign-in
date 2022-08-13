@@ -39,11 +39,11 @@
 
 `Actions` —— `I understand my workflows, go ahead and enable them`
 
-![开启自动任务1](image/README/1660408632078.png)
+![开启自动任务1](http://guisper.gitee.io/image/image/github/auto-sign-in/1660408632078.png)
 
 在跳转后的界面：`Github Action Auto Sign In` —— `Enable workflow`
 
-![开启自动任务2](image/README/1660408723309.png)
+![开启自动任务2](http://guisper.gitee.io/image/image/github/auto-sign-in/1660408723309.png)
 
 至此自动打卡的配置已经完成，自动任务已开启。如果需要发送邮箱，还需要添加两个字段，参考接下来的发送邮箱步骤。
 
@@ -62,7 +62,7 @@
 
 添加完成后，你的 `Secrets` 应该包含这七个字段：
 
-![添加完成后的字段](image/README/1660411170081.png)
+![添加完成后的字段](http://guisper.gitee.io/image/image/github/auto-sign-in/1660411170081.png)
 
 #### 关闭自动任务失败发送邮箱
 
@@ -70,11 +70,11 @@
 
 `右上角头像` —— `Settings` —— `Notifications`
 
-![设置——通知](image/README/1660410137862.png)
+![设置——通知](http://guisper.gitee.io/image/image/github/auto-sign-in/1660410137862.png)
 
 往下滑一点点找到 `Actions` ，取消 `Email` 前面的勾选即可
 
-![Actions邮箱](image/README/1660410450259.png)
+![Actions邮箱](http://guisper.gitee.io/image/image/github/auto-sign-in/1660410450259.png)
 
 ### 自动任务说明
 
