@@ -2,6 +2,8 @@
 
 ## 自动任务
 
+如果你还有没有 `Github` 账号，请先去注册(`Sign up`)
+
 自动打卡通过 `Github Actions`完成，步骤如下
 
 ### 自动打卡
@@ -41,7 +43,8 @@
 
 > 增加 Secrets 字段
 
-`Secrets` —— `Actions` —— `New repository secret` ，需要添加：
+`Settings` —— `Secrets `——`Actions `——`New repository secret` ，需要添加：
+
 - `MAILUSERNAME`：你的QQ邮箱地址
 - `MAILPASSWORD`：邮箱授权码
 
@@ -50,10 +53,13 @@
 - 请确保你配置的 `Secrets` 的字段和值正确，这是自动提交任务和成功后发送邮箱的前提
 - 由于ISP开放(不用通过 `vpn` 也能访问)的时间不确定，因此目前设置的自动打卡频率为每三小时一次，一天之内会尝试打八次卡，打卡成功后才会发送邮箱：
   - 一天之内可能会收到多封打卡结果的邮箱
-  - 当然也有可能八次打卡全部失败，如果你在晚上21:00还未收到当天打卡结果，请尝试登录ISP手动打卡
-  - 若已经打过卡了没有收到邮箱，请重新填写 `MAILUSERNAME` 邮箱地址和 `MAILPASSWORD` 授权码字段
+  - 当然也有可能八次尝试均失败，如果你在晚上21:00还未收到当天打卡结果，请尝试登录ISP手动打卡
+- 配置完成之后，就等着收邮箱吧~
+
+![QQ邮箱收件](http://guisper.gitee.io/image/image/github/auto-sign-in/1660384178929.png)
 
 ## 手动任务
+
 ### 安装
 
 ```bash
@@ -164,4 +170,3 @@ auto-sign-in  根目录
 └── tsconfig.json  代码的编译选项
 
 ```
-
