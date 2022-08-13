@@ -39,7 +39,7 @@
 
 > 获取QQ邮箱授权码
 
-参考[QQ邮箱帮助中心——设置授权码](https://service.mail.qq.com/cgi-bin/help?subtype=1&&no=1001256&&id=28)
+参考：[QQ邮箱帮助中心——设置授权码](https://service.mail.qq.com/cgi-bin/help?subtype=1&&no=1001256&&id=28)
 
 > 增加 Secrets 字段
 
@@ -68,7 +68,7 @@ git clone https://github.com/Guisper/auto-sign-in.git
 
 ### 运行
 
-请确保 `Nodejs`版本在14以上，推荐使用 `yarn` 来管理包
+请确保 `Nodejs` 版本在14以上，推荐使用 `yarn` 来管理包
 
 > npm 版本：
 
