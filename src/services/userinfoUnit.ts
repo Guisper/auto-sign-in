@@ -148,7 +148,7 @@ const checkUserinfo = async (): Promise<[boolean, boolean, UserinfoModel]> => {
     } else {
       // 存在则解密文件
       for (const [k, v] of Object.entries(res!)) {
-        ;(res as any)[k] = decrypt(v, key).toString(Utf8)
+        ;(res as any)[k] = decrypt(v as string, key).toString(Utf8)
       }
       userinfo = res as UserinfoModel
     }
