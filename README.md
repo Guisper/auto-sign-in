@@ -4,7 +4,7 @@
 
 如果你还有没有 `Github` 账号，请先去注册(`Sign up`)
 
-自动打卡通过 `Github Actions`完成，步骤如下
+自动打卡通过 `Github Actions` 完成，步骤如下
 
 ### 自动打卡
 
@@ -43,7 +43,7 @@
 
 > 增加 Secrets 字段
 
-`Settings` —— `Secrets `——`Actions `——`New repository secret` ，需要添加：
+`Settings` —— `Secrets` —— `Actions` —— `New repository secret` ，除了上面已经添加的五个字段外，还需要添加：
 
 - `MAILUSERNAME`：你的QQ邮箱地址
 - `MAILPASSWORD`：邮箱授权码
@@ -128,7 +128,7 @@ yarn build-app
 
 > 打包到其他平台
 
-如果需要打包到其他平台，请更改 `package.json` 的 `pkg.targets` ，具体规则参照[pkg - npm](https://www.npmjs.com/package/pkg)
+如果需要打包到其他平台，请更改 `package.json` 的 `pkg.targets` ，具体规则参照 [pkg - npm](https://www.npmjs.com/package/pkg)
 
 ### 项目结构
 
@@ -141,7 +141,7 @@ auto-sign-in  根目录
 ├── package.json 项目依赖和一些配置项
 ├── src 项目根目录
 │   ├── index.ts               入口文件，从这里开始运行
-│   ├── model                  各种模型(TypeScript Interface)
+│   ├── model                  TypeScript Interface
 │   │   ├── IPAddress.model.ts IP地址模型
 │   │   ├── header.model.ts    请求头模型
 │   │   ├── location.model.ts  地址模型
@@ -168,5 +168,4 @@ auto-sign-in  根目录
 │       ├── url.ts             请求地址
 │       └── validator.ts       参数验证
 └── tsconfig.json  代码的编译选项
-
 ```
