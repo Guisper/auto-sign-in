@@ -1,9 +1,9 @@
 import axios from 'axios'
 import { minify } from 'html-minifier'
 
-import { writer } from '../utils/io'
+import { checkDir, writer } from '../utils/io'
 import { info, success, warn } from '../utils/output'
-import { staticPagePath } from '../utils/path'
+import { staticPagePath, staticPath } from '../utils/path'
 import pageProcessor from '../utils/page'
 
 const minifyOptions = {
@@ -21,6 +21,7 @@ const getPageResult = async (pageUrl: string, id: string): Promise<void> => {
     const { data } = await axios.get(pageUrl, { params })
     success('获取成功')
     info('写入文件...')
+    await checkDir(staticPath)
     await writer(staticPagePath, minify(pageProcessor(data), minifyOptions))
   } catch (e) {
     warn(e as string)
