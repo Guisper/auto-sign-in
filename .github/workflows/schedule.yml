@@ -25,9 +25,8 @@ jobs:
           AREA: ${{secrets.AREA}}
       - name: 'Get Date'
         run: echo "REPORT_DATE=$(TZ=':Asia/Shanghai' date '+%Y-%m-%d')" >> $GITHUB_ENV
-      - name: 'Make Static Dir'
-        run: mkdir static
-        run: ll
+      - run: mkdir static
+      - run: ll
       - name: 'Send Email'
         uses: dawidd6/action-send-mail@master
         with:
