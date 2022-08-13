@@ -8,14 +8,14 @@
 
 ### 自动打卡
 
-> Fork 本仓库
+#### Fork 本仓库
 
 - 点击 `Fork`
 - 在打开的页面点 `Create fork`
 
 ![fork仓库](http://guisper.gitee.io/image/image/github/auto-sign-in/1660272853660.png)
 
-> 在 Settings 中配置 Actions
+#### 在 Settings 中配置 Actions
 
 - 点击 `Settings` —— `Actions` —— `General`
 - 设置 `Actions permissions` 为 `Allow all actions and reusable workflows`
@@ -23,7 +23,7 @@
 
 ![设置Actions](http://guisper.gitee.io/image/image/github/auto-sign-in/1660272992317.png)
 
-> 在 Settings 中配置 Secrets
+#### 在 Settings 中配置 Secrets
 
 - 点击 `Secrets` —— `Actions`
 - 点击 `New repository secret` 添加你的 `Repository secrets`，其中 `Name` 是字段， `Value` 是值，需要包括：
@@ -35,25 +35,53 @@
 
 ![创建Secrets](http://guisper.gitee.io/image/image/github/auto-sign-in/1660273025502.png)
 
+#### 在 Actions 中开启自动任务
+
+`Actions` —— `I understand my workflows, go ahead and enable them`
+
+![开启自动任务1](image/README/1660408632078.png)
+
+在跳转后的界面：`Github Action Auto Sign In` —— `Enable workflow`
+
+![开启自动任务2](image/README/1660408723309.png)
+
+至此自动打卡的配置已经完成，自动任务已开启。如果需要发送邮箱，还需要添加两个字段，参考接下来的发送邮箱步骤。
+
 ### 发送邮箱
 
-> 获取QQ邮箱授权码
+#### 获取QQ邮箱授权码
 
 参考：[QQ邮箱帮助中心——设置授权码](https://service.mail.qq.com/cgi-bin/help?subtype=1&&no=1001256&&id=28)
 
-> 增加 Secrets 字段
+#### 增加 Secrets 字段
 
 `Settings` —— `Secrets` —— `Actions` —— `New repository secret` ，除了上面已经添加的五个字段外，还需要添加：
 
 - `MAILUSERNAME`：你的QQ邮箱地址
 - `MAILPASSWORD`：邮箱授权码
 
+添加完成后，你的 `Secrets` 应该包含这七个字段：
+
+![添加完成后的字段](image/README/1660411170081.png)
+
+#### 关闭自动任务失败发送邮箱
+
+`Github Actions` 默认会在自动任务执行失败后发送邮箱，可以参考下面的步骤关闭：
+
+`右上角头像` —— `Settings` —— `Notifications`
+
+![设置——通知](image/README/1660410137862.png)
+
+往下滑一点点找到 `Actions` ，取消 `Email` 前面的勾选即可
+
+![Actions邮箱](image/README/1660410450259.png)
+
 ### 自动任务说明
 
-- 请确保你配置的 `Secrets` 的字段和值正确，这是自动提交任务和成功后发送邮箱的前提
+- 请确保你配置的 `Secrets` 的 `Name` 和 `Value` 完整和正确，这是自动提交任务和成功后发送邮箱的前提
 - 由于ISP开放(不用通过 `vpn` 也能访问)的时间不确定，因此目前设置的自动打卡频率为每三小时一次，一天之内会尝试打八次卡，打卡成功后才会发送邮箱：
   - 一天之内可能会收到多封打卡结果的邮箱
-  - 当然也有可能八次尝试均失败，如果你在晚上21:00还未收到当天打卡结果，请尝试登录ISP手动打卡
+  - 当然也有可能八次尝试均失败，如果你在晚上21:00还未收到当天打卡结果的邮箱，请尝试登录ISP手动打卡
 - 配置完成之后，就等着收邮箱吧~
 
 ![QQ邮箱收件](http://guisper.gitee.io/image/image/github/auto-sign-in/1660384178929.png)
