@@ -168,21 +168,21 @@ auto-sign-in  根目录
 ├── dist  运行 npm run build-app 生成的应用目录
 ├── package.json 项目依赖和一些配置项
 ├── src 项目根目录
-│   ├── index.ts               入口文件，从这里开始运行
-│   ├── model                  TypeScript Interface
+│   ├── index.ts   入口文件，从这里开始运行
+│   ├── model      TypeScript Interface
 │   │   ├── IPAddress.model.ts IP地址模型
 │   │   ├── header.model.ts    请求头模型
 │   │   ├── location.model.ts  地址模型
 │   │   ├── question.model.ts  问题模型
 │   │   └── userinfo.model.ts  用户信息模型
-│   ├── services 完成打卡操作的必须流程
+│   ├── services   完成打卡操作的必须流程
 │   │   ├── createServer.ts    开启本地服务器展示页面
 │   │   ├── getPageResult.ts   获取页面结果
 │   │   ├── getUserId.ts       获取用户id
 │   │   ├── login.ts           登录并注册token
 │   │   ├── submitRequest.ts   提交打卡申请
 │   │   └── userinfoUnit.ts    用户信息的各类操作
-│   └── utils 工具类
+│   └── utils      工具类
 │       ├── checker.ts         条件检查
 │       ├── date.ts            日期操作
 │       ├── input.ts           从控制台读取输入
