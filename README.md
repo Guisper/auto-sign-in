@@ -41,7 +41,7 @@
 
 ![开启自动任务1](http://guisper.gitee.io/image/image/github/auto-sign-in/1660408632078.png)
 
-在跳转后的界面：`Github Action Auto Sign In` —— `Enable workflow`
+在跳转后的界面：`Github Action Auto Sign In` —— `Enable workflow` 。开启后就没有浅黄色的警告条了。
 
 ![开启自动任务2](http://guisper.gitee.io/image/image/github/auto-sign-in/1660408723309.png)
 
@@ -84,7 +84,8 @@
   - 当然也有可能八次尝试均失败，如果你在晚上21:00还未收到当天打卡结果的邮箱，请尝试登录ISP手动打卡
 - 配置完成之后，就等着收邮箱吧~
 
-![QQ邮箱收件](http://guisper.gitee.io/image/image/github/auto-sign-in/1660384178929.png)
+![QQ邮箱收件](http://guisper.gitee.io/image/image/github/auto-sign-in/1660519928098.png)
+
 
 ## 手动任务
 
