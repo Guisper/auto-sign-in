@@ -79,6 +79,7 @@
 ### 自动任务说明
 
 - 请确保你配置的 `Secrets` 的 `Name` 和 `Value` 完整和正确，这是自动提交任务和成功后发送邮箱的前提
+- 你的 `Secrets` 由 `Github` 加密保管，详见：[GitHub Actions Secrets - GitHub Docs](https://docs.github.com/en/rest/actions/secrets#about-the-secrets-api)
 - 由于ISP开放(不用通过 `vpn` 也能访问)的时间不确定，因此目前设置的自动打卡频率为每三小时一次，一天之内会尝试打八次卡，打卡成功后才会发送邮箱：
   - 一天之内可能会收到多封打卡结果的邮箱
   - 当然也有可能八次尝试均失败，如果你在晚上21:00还未收到当天打卡结果的邮箱，请尝试登录ISP手动打卡
@@ -86,8 +87,9 @@
 
 ![QQ邮箱收件](http://guisper.gitee.io/image/image/github/auto-sign-in/1660519928098.png)
 
-
 ## 手动任务
+
+配置了上面的自动任务后可以不管手动任务了。当然，如果你对此程序是如何在本地运行的感兴趣，可以安装并配置运行环境来尝试一下。
 
 ### 安装
 
