@@ -23,7 +23,8 @@ const getCredit = async (url: string): Promise<string> => {
   const { headers: header, data } = await axios.get(url)
   const token = header?.['set-cookie']?.[0]!
 
-  // 二次请求（用户重新修改了账号密码）时 ISP 不会再次返回 token 避免重新赋值和重复设置请求头
+  // 遇到的坑：二次请求（用户重新修改了账号密码）时，ISP不会再次返回 token
+  // 仅当 token 存在时才赋值并设置请求头，避免被覆盖成 undefined
   if (token) {
     cookie = token
     headers.cookie = cookie
@@ -31,7 +32,7 @@ const getCredit = async (url: string): Promise<string> => {
   }
   checker(cookie, '获取成功', '无法获取token')
 
-  // 获取页面上的验证码
+  // 解析页面上的验证码
   info('获取验证码...')
   const code = codeParser(data)
   checker(code, '获取成功：' + code, '无法获取code')

@@ -78,13 +78,15 @@ const submitRequest = async (
   id: string,
   ...urls: Array<string>
 ): Promise<void> => {
-  const [signInUrl, generalSignInUrl] = urls
+  // 一键登记的地址、常规登记的地址
+  const [url, generalUrl] = urls
   const { province, city, area } = userinfo
   const location = { province, city, area } as LocationModel
   // 两种登记方式都需要携带的 params 参数
   const params: Params = { id, id2: today }
   info(`尝试提交${today}的打卡申请...`)
-  !isFirstExec && (await signIn(signInUrl, params)) || await signInWithLocation(generalSignInUrl, location, params)
+  // 是第一次执行进行常规登记，否则一键登记，一键登记失败则常规登记
+  !isFirstExec && await signIn(url, params) || await signInWithLocation(generalUrl, location, params)
 }
 
 export default submitRequest
