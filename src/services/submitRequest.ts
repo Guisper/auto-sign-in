@@ -19,9 +19,9 @@ const today = getFormattedString()
 
 // 提交请求的响应结果
 const responsMap: Map<string, boolean> = new Map([
-  ['登记失败', true],
+  ['登记失败', false],
   ['提交成功', true],
-  [today + '登记已存在', false]
+  [today + '登记已存在', true]
 ])
 
 // 不带地址的一键登记
