@@ -18,23 +18,23 @@ type Params = {
 const today = getFormattedString()
 
 // 提交请求的响应结果
-const responsMap = new Map([
-  ['提交成功', 0],
-  [today + '登记已存在', 1],
-  ['登记失败', 2],
-  ['登记失败！需开启定位功能', 3]
+const responsMap: Map<string, boolean> = new Map([
+  ['登记失败', true],
+  ['提交成功', true],
+  [today + '登记已存在', false]
 ])
 
 // 不带地址的一键登记
 const signIn = async (url: string, params: Params): Promise<boolean> => {
   info('一键登记中...')
-  const { data } = await axios.get(url, { params })
+  // 遇到的坑：axios 会自动去掉 params 中值为 undefined 或者空字符串(falsy)的键
+  // 而请求时如果不携带 adds 和 addsxy，ISP 会认为没有开启定位，因此这里只能写成 'undefined' 而不能用 undefined
+  const { data } = await axios.get(url, { params: { ...params, adds: 'undefined', addsxy: 'undefined' } })
   // 解析页面返回结果
   const msg = responsParser(data)
   const res = responsMap.get(msg!)!
-  const isOK = res === 0 || res === 1
-  isOK ? success(msg!) : warn(msg + '无法完成一键登记，尝试常规登记...')
-  return isOK
+  res ? success(msg!) : warn(msg + '无法完成一键登记，尝试常规登记...')
+  return res
 }
 
 // 带有地址的常规登记
@@ -69,7 +69,7 @@ const signInWithLocation = async (
   // 解析页面返回结果
   const msg = responsParser(data)
   const res = responsMap.get(msg!)!
-  checker(res === 0 || res === 1, msg, new Error('常规登记出错'))
+  checker(res, msg, new Error('常规登记出错'))
 }
 
 const submitRequest = async (
