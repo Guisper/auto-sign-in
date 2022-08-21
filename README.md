@@ -189,13 +189,14 @@ auto-sign-in  根目录
 │       ├── checker.ts         条件检查
 │       ├── date.ts            日期操作
 │       ├── input.ts           从控制台读取输入
+│       ├── interceptors.ts    设置拦截器
 │       ├── io.ts              文件读写
 │       ├── networkAddress.ts  获取IP地址和端口
 │       ├── output.ts          输出内容到控制台
 │       ├── page.ts            页面资源处理
 │       ├── parser.ts          解析器
 │       ├── path.ts            本地静态资源路径
-│       ├── setHeaders.ts      通过拦截器设置请求头
+│       ├── quit.ts            延迟退出
 │       ├── url.ts             请求地址
 │       └── validator.ts       参数验证
 └── tsconfig.json  代码的编译选项
