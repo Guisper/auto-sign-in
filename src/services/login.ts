@@ -3,7 +3,7 @@ import { stringify } from 'qs'
 
 import { info, warn } from '../utils/output'
 import checker from '../utils/checker'
-import setHeaders from '../utils/setHeaders'
+import { retryTimeout, setHeaders } from '../utils/interceptors'
 import { codeParser, responsParser } from '../utils/parser'
 import { needRewriteUserinfo } from './userinfoUnit'
 
@@ -18,11 +18,14 @@ const headers: HeaderModel = {
 }
 
 const getCredit = async (url: string): Promise<string> => {
+  // 第一次请求前设置超时重传（拦截器设置是全局的，对后面的请求都会生效）
+  retryTimeout()
   // 获取 token 并加入到请求头中 以 cookie 的形式携带
   !cookie && info('获取token...')
   const { headers: header, data } = await axios.get(url)
   const token = header?.['set-cookie']?.[0]!
 
+  // 设置全局请求头
   // 遇到的坑：二次请求（用户重新修改了账号密码）时，ISP不会再次返回 token
   // 仅当 token 存在时才赋值并设置请求头，避免被覆盖成 undefined
   if (token) {
