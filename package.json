@@ -4,7 +4,9 @@
   "main": "build/index.js",
   "bin": "build/index.js",
   "pkg": {
-    "targets": ["win"],
+    "targets": [
+      "win"
+    ],
     "outputPath": "dist/"
   },
   "scripts": {
@@ -30,7 +32,8 @@
     "inquirer": "8",
     "portfinder": "1.0.28",
     "qrcode-terminal": "^0.12.0",
-    "qs": "^6.11.0"
+    "qs": "^6.11.0",
+    "single-line-log": "^1.1.2"
   },
   "devDependencies": {
     "@types/crypto-js": "^4.1.1",
@@ -39,6 +42,7 @@
     "@types/inquirer": "^9.0.0",
     "@types/node": "^18.6.5",
     "@types/qrcode-terminal": "^0.12.0",
+    "@types/single-line-log": "^1.1.0",
     "pkg": "^5.8.0",
     "ts-node": "^10.9.1",
     "tsc": "^2.0.4",

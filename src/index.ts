@@ -7,6 +7,7 @@ import getUserId from './services/getUserId'
 import submitRequest from './services/submitRequest'
 import getPageResult from './services/getPageResult'
 import createServer from './services/createServer'
+import quit from './utils/quit'
 
 !(async () => {
   try {
@@ -20,6 +21,6 @@ import createServer from './services/createServer'
     }
   } catch (e) {
     error('操作失败，错误信息：', e as string)
-    process.exit(1)
+    quit()
   }
 })()
