@@ -2,7 +2,7 @@ import { stdout } from 'single-line-log'
 
 const second = 1000
 
-const slog = (countdown: number): void => stdout(countdown / second + '秒后自动退出...')
+const slog = (countdown: number): void => stdout(countdown / second + '秒后自动退出...\n')
 
 const quit = (timer: number = 30000, code: number = 1) => {
   let countdown = timer
