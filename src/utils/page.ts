@@ -2,7 +2,7 @@
 const pageProcessor = (page: string): string =>
   page
     .replace(/\<link.+?\/\>/g, '')
-    .replace(/href=["'](.+?[^*\.css])["']/g, '')
+    .replace(/(?<=href=["']).+?(?=["'])/g, '')
     .replace(/(<script(.*?)>)[\s\S]*?(<\/script>)/g, '')
     .replace(/(<div class="card mb-3">)[\s\S]*?(<div class="">)/, '</div>')
     .replace(/(<div class="card-header">)[\s\S]*?(\<tr style="display:none;">)/, '<tr>')
