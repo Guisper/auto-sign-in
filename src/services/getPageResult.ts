@@ -27,6 +27,7 @@ const getPageResult = async (pageUrl: string, id: string): Promise<void> => {
     await checkDir(staticPath)
     await writer(staticPagePath, minify(pageProcessor(data), minifyOptions))
   } catch (e) {
+    // 在这里捕获错误是为了防止文件读写错误被认为打卡失败
     warn(e as string)
   }
 }

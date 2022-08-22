@@ -14,11 +14,14 @@ import quit from './utils/quit'
     const [isAutoSignIn, isFirstExec, userinfo] = await checkUserinfo()
     await login(loginUrl, userinfo, isAutoSignIn)
     const id = await getUserId(idUrl)
-    await submitRequest(isFirstExec, userinfo, id, signInUrl, generalSignInUrl)
+    await submitRequest({
+      id,
+      userinfo,
+      isFirstExec,
+      urls: [signInUrl, generalSignInUrl]
+    })
     await getPageResult(pageUrl, id)
-    if (!isAutoSignIn) {
-      await createServer()
-    }
+    !isAutoSignIn && await createServer()
   } catch (e) {
     error('操作失败，错误信息：', e as string)
     quit()

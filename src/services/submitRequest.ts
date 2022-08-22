@@ -14,6 +14,13 @@ type Params = {
   id2: string
 }
 
+type RequestParams = {
+  isFirstExec: boolean
+  userinfo: UserinfoModel
+  id: string
+  urls: Array<string>
+}
+
 // 运行时的日期 作为提交的参数之一
 const today = getFormattedString()
 
@@ -72,12 +79,8 @@ const signInWithLocation = async (
   checker(res, msg, new Error('常规登记出错'))
 }
 
-const submitRequest = async (
-  isFirstExec: boolean,
-  userinfo: UserinfoModel,
-  id: string,
-  ...urls: Array<string>
-): Promise<void> => {
+const submitRequest = async (requestParams: RequestParams): Promise<void> => {
+  const { urls, userinfo, id, isFirstExec } = requestParams
   // 一键登记的地址、常规登记的地址
   const [url, generalUrl] = urls
   const { province, city, area } = userinfo
