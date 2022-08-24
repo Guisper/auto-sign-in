@@ -7,17 +7,19 @@ import HeaderModel from '../model/header.model'
 axios.defaults.timeout = 10 * 1000
 ;(axios.defaults as any).retry = 3
 
-// 超时重传间隔函数
-const sleep = (delay: number = 1500) => new Promise(resolve => setTimeout(resolve, delay))
+// 休眠函数，让程序睡一会
+const sleep = (min = 1000, rand = 1500) => new Promise(resolve => setTimeout(resolve, (rand * Math.random() + min) >> 0))
 
 // 通过 axios 拦截器设置请求头
 // 用于加入 cookie
 const setHeaders = (headers: HeaderModel) => {
   axios.interceptors.request.use(config => {
-    for (const [k, v] of Object.entries(headers)) {
-      config.headers![k] = v
-    }
-    return config
+    return new Promise(resolve => {
+      for (const [k, v] of Object.entries(headers)) {
+        config.headers![k] = v
+      }
+      sleep().then(() => resolve(config))
+    })
   })
 }
 // 用于超时自动重传
