@@ -99,7 +99,7 @@ git clone https://github.com/Guisper/auto-sign-in.git
 
 ### 运行
 
-请确保 `Nodejs` 版本在14以上，推荐使用 `yarn` 来管理包
+请确保 `Nodejs` 版本在16以上，推荐使用 `yarn` 来管理包
 
 > npm 版本：
 
