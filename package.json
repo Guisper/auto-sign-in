@@ -10,14 +10,14 @@
     "outputPath": "dist/"
   },
   "scripts": {
-    "dev": "ts-node ./src/index.ts",
+    "dev": "ts-node src/index.ts",
     "build": "tsc",
     "start": "node build/index",
     "build-app": "pkg ."
   },
   "repository": {
     "type": "git",
-    "url": "https://gitee.com/Guisper/Study.git"
+    "url": "https://github.com/Guisper/auto-sign-in"
   },
   "author": "Guisper",
   "license": "MIT",
