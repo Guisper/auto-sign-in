@@ -16,6 +16,8 @@ type Params = {
 
 // 运行时的日期 作为提交的参数之一
 const today = getFormattedString()
+const rowParmas: string = '&wuhan=%E5%90%A6&wuhan=%E5%90%A6&wuhan=%E3%80%90%E4%BD%8E%E3%80%91%E5%9B%9B%E5%B7%9D%E7%9C%81%E6%88%90%E9%83%BD%E5%B8%82%E9%BE%99%E6%B3%89%E9%A9%BF%E5%8C%BA%E9%BE%99%E6%B3%89%E9%A9%BF%E5%8C%BA%E9%99%A4%E9%AB%98%E3%80%81%E4%B8%AD%E9%A3%8E%E9%99%A9%E5%8C%BA%E4%BB%A5%E5%A4%96%E7%9A%84%E5%85%B6%E4%BB%96%E5%8C%BA%E5%9F%9F&action=add&adds=&addsxy='
+const nonriskParams: string = '&wuhan=%E5%90%A6&wuhan=%E5%90%A6&wuhan=%E5%90%A6&action=add&adds=&addsxy='
 
 // 提交请求的响应结果
 const responsMap: Map<string, boolean> = new Map([
@@ -55,18 +57,13 @@ const signInWithLocation = async (
     province,
     city,
     area,
-    wuhan: '否',
-    fare: '否',
-    wls: '否',
     kesou: '否',
     zhengduan: '',
-    Submit: '提交',
-    action: 'add',
-    adds: 'undefined',
-    addsxy: 'undefined'
+    fare: '否',
+    wls: '否'
   })
-  const { data } = await axios.post(url, body + '&wuhan=%E5%90%A6')
-
+  const params = province + city + area === '四川省成都市龙泉驿区' ? rowParmas : nonriskParams
+  const { data } = await axios.post(url, body + params)
   // 解析页面返回结果
   const msg = responsParser(data)
   const res = responsMap.get(msg!)!
