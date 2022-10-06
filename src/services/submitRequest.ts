@@ -57,10 +57,12 @@ const signInWithLocation = async (
     province,
     city,
     area,
+    hcode: '绿码',
     kesou: '否',
     zhengduan: '',
     fare: '否',
-    wls: '否'
+    wls: '否',
+    wuhan: '否'
   })
   const params = province + city + area === '四川省成都市龙泉驿区' ? rowParmas : nonriskParams
   const { data } = await axios.post(url, body + params)
